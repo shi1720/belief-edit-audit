@@ -1,0 +1,26 @@
+This manuscript was prepared as a technical work sample for the January 2027
+Iliad Intensive program application.
+
+Iliad's /apply?direct page is a program application, not a conference paper
+submission portal. The current form requests a CV and personal statements,
+including a proposed alignment project. It has no manuscript-upload field.
+The manuscript can therefore be linked as optional supporting material; it is
+not submitted to a proceedings track through that form.
+
+The Intensive's relevant themes are computational mechanics, belief-state
+geometry, world models, causal interpretation, and safety guarantees and their
+limits. Its published guidance permits applicants without a PhD; mathematical
+maturity rather than a specific credential is the requirement. Selection and
+immigration eligibility remain decisions of the program and relevant authorities.
+
+Official sources inspected 17 October 2026:
+https://www.iliad.ac/apply?direct
+https://www.iliad.ac/intensive
+https://iliad-intensive.org/
+
+The public Intensive page advertises a US$5,000 travel-and-housing allowance.
+The form has no separate grant-amount field. The application may request the
+full advertised support in its additional-information field.
+
+No conference acceptance, peer review, empirical neural-model improvement,
+patentability, or guaranteed originality is represented by this work sample.

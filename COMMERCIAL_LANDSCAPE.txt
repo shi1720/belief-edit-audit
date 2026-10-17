@@ -1,0 +1,50 @@
+SOURCE-BASED TOOLING LANDSCAPE AND COMMERCIAL HYPOTHESIS
+Reviewed 17 October 2026
+
+Existing capabilities
+
+1. Goodfire's published Ember SDK describes editing model features, feature
+   search, contrastive search, and automatic steering. Its current Silico
+   documentation also covers probing, activation monitoring, steering, and
+   causal analysis.
+   https://github.com/goodfire-ai/goodfire-sdk
+   https://docs.goodfire.com/concepts/capabilities/
+
+2. Neuronpedia documents public APIs for activations, steering, attribution
+   graphs, and other interpretation tools. It is an existing open platform;
+   a generic feature dashboard or steering API would not be a distinctive
+   product hypothesis.
+   https://docs.neuronpedia.org/api-and-data/api
+
+3. Anthropic's open circuit-tracing tools allow attribution-graph generation
+   and hypothesis testing by modifying feature values.
+   https://www.anthropic.com/research/open-source-circuit-tracing
+
+What this evidence supports
+
+There is an active tooling ecosystem around inspecting and manipulating model
+internals. These official descriptions establish existing capabilities. They
+do not establish willingness to pay for the proposed audit or prove that a
+specific feature is absent from every product.
+
+Proposed application
+
+A finite-state intervention contract for structured simulators, belief modules,
+and agent memory systems could expose three outputs: a compatible edit; an
+explicit pair of conflicting priors; or an optimal constrained change budget.
+An operational buyer would need an explicit latent model and transition
+restrictions. The current implementation is suitable for small explicit models,
+not a drop-in assurance layer for arbitrary LLM activation patches.
+
+Validation milestones before a startup claim
+
+* Ground edited coordinates in a real model mechanism and test held-out mixtures.
+* Establish model-estimation confidence sets and robust compatibility criteria.
+* Compare intervention failure prediction against probe accuracy and behavioral
+  evaluations on open neural models.
+* Benchmark a real integration and measure operator usefulness and computational
+  costs before making pricing or return-on-investment claims.
+
+No interviews, market-size estimates, customer commitments, or patent searches
+were performed. The review is a source-based landscape, not evidence of a
+validated market or patent clearance.

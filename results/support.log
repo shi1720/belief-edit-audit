@@ -1,0 +1,16 @@
+{
+  "free_support": {
+    "count": 60,
+    "feasible": 35,
+    "mean_unconstrained": 0.48991122591770114,
+    "mean_constrained_feasible": 0.7579563994010359,
+    "mean_extra_cost_feasible": 0.3098913716833988
+  },
+  "diagonal_allowed": {
+    "count": 60,
+    "feasible": 60,
+    "mean_unconstrained": 0.4804642568060648,
+    "mean_constrained_feasible": 0.8445694395738386,
+    "mean_extra_cost_feasible": 0.3641051827677738
+  }
+}

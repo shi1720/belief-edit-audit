@@ -1,0 +1,13 @@
+source,title,primary_url,relevant_prior_work,attribution_and_difference
+Jaeger 2000,Observable Operator Models for Discrete Stochastic Time Series,https://doi.org/10.1162/089976600300015411,Future-test linear representations,Used as foundation; not claimed new
+"Littman, Sutton, Singh 2001",Predictive Representations of State,https://web.eecs.umich.edu/~baveja/PSRmainpage.html,Predictive tests define state,Used as foundation
+"Singh, James, Rudary 2004",Predictive State Representations: A New Theory for Modeling Dynamical Systems,https://arxiv.org/abs/1207.4167,Controlled tests and linear dimension,Edit alphabet is a specialization of controlled predictive tests
+Kiefer et al. 2013,On the Complexity of Equivalence and Minimisation for Q-weighted Automata,https://arxiv.org/abs/1302.2818,Equivalence and minimal linear realizations,Backward closure and finite test lengths are classical
+Kiefer 2020,Notes on Equivalence and Minimization of Weighted Automata,https://arxiv.org/abs/2009.01217,Self-contained standard subspace algorithms,No novel abstract minimization algorithm claimed
+Rubenstein et al. 2017,Causal Consistency of Structural Equation Models,https://arxiv.org/abs/1707.00819,Abstraction must respect interventions,Compatibility specializes existing commutation principle
+Geiger et al. 2025,Causal Abstraction: A Theoretical Foundation for Mechanistic Interpretability,https://www.jmlr.org/papers/v26/23-0058.html,Intervention algebras and interpretability,Does not replace or newly invent causal abstraction
+Shai et al. 2024,Transformers Represent Belief State Geometry in their Residual Stream,https://arxiv.org/abs/2405.15943,Belief geometry in toy transformers,Motivates audit; no neural replication claimed
+Balcells et al. 2026,Large Language Models Develop Belief State Geometry In-Context,https://arxiv.org/abs/2609.17376,Pretrained belief probes and interventions,Most direct empirical neighbor; our finite-kernel guarantees are different
+Georgiou et al. 2019,On Exact and Approximate Markov Chain Lumpability and Applications,https://www.researchgate.net/publication/334114508,Closest lumpable approximation via pseudoinverse,Shows approximate lumpability is established; ours fixes support and worst-row TV
+Kiefer and Tang 2021,Approximate Bisimulation Minimisation,https://doi.org/10.4230/LIPIcs.FSTTCS.2021.48,Perturb systems to recover exact quotient,Repair and bounded-horizon perturbation ideas are established
+Fatmi et al. 2026,Perturbation Equivalence in Labelled Markov Chains,https://arxiv.org/abs/2609.13401,Support-respecting universal/existential equivalence,Our fixed predictive subspace and nearest specified edit are distinct objectives

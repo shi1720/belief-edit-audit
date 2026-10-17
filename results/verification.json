@@ -1,0 +1,7 @@
+{
+  "saved_repairs_verified": 335,
+  "infeasibility_obstructions_verified": 25,
+  "maximum_dual_residual": 2.0488838674492327e-13,
+  "maximum_cost_dual_gap": 4.2127290544868856e-10,
+  "verification": "float64 residual checks, not formal rational certification"
+}
