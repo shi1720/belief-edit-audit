@@ -34,7 +34,8 @@ for n in [6,12,18]:
             np.savez_compressed(OUT/'instances'/f'support_n{n}_r{r}_s{seed}.npz',
                 K=K,E=C,labels=labels,allowed=allowed,
                 repaired=sol.kernel if sol else np.empty((0,0)),
-                dual_eq=sol.dual_eq if sol else [],dual_ub=sol.dual_ub if sol else [])
+                dual_eq=sol.dual_eq if sol else [],dual_ub=sol.dual_ub if sol else [],
+                observable=sol.observable if sol else [],annihilator=sol.annihilator if sol else [])
             rows.append(row)
 with (OUT/'support.csv').open('w') as f:
     writer=csv.DictWriter(f,fieldnames=list(rows[0]));writer.writeheader();writer.writerows(rows)

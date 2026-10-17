@@ -5,7 +5,7 @@ import numpy as np
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'src'))
 from belief_edit import (repair,compatibility_defect,partition_matrix,
                          partition_radius,lift_centers,row_tv,witness,
-                         observable_basis,stochastic)
+                         observable_basis,stochastic,repair_problem)
 
 
 def exact_rank(A):
@@ -114,5 +114,16 @@ class AuditTests(unittest.TestCase):
         sol=repair(K,C,allowed=allowed)
         self.assertAlmostEqual(sol.radius,1.,places=7)
         self.assertLess(np.max(abs(sol.kernel[~allowed])),1e-9)
+
+    def test_saved_dual_basis_portability(self):
+        E=np.array([[1.,0],[0,1],[.3,.7],[.6,.4]])
+        K=np.random.default_rng(56).dirichlet(np.ones(4),size=4)
+        sol=repair(K,E)
+        # The same span is provided in a deliberately different coordinate basis.
+        rotation=np.array([[.8,-.6],[.6,.8]])
+        c,A,b,B,e=repair_problem(K,E@rotation,basis=(sol.observable,sol.annihilator))
+        lower=e@sol.dual_eq+b@sol.dual_ub
+        self.assertAlmostEqual(lower,row_tv(K,sol.kernel),places=8)
+        self.assertGreaterEqual(np.min(c-B.T@sol.dual_eq-A.T@sol.dual_ub),-1e-8)
 
 if __name__=='__main__': unittest.main()

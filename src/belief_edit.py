@@ -86,18 +86,20 @@ class Repair:
     gap: float
     dual_eq: np.ndarray
     dual_ub: np.ndarray
+    observable: np.ndarray
+    annihilator: np.ndarray
 
 
-def repair_problem(K, O, allowed=None):
+def repair_problem(K, O, allowed=None, basis=None):
     """LP with variables [L.flatten(), abs(L-K).flatten(), t], all >= 0."""
     K = np.asarray(K, float)
     n = len(K)
     if not stochastic(K):
         raise ValueError('K must be a row-stochastic square matrix')
-    U = canonical_basis(O)
+    U = canonical_basis(O) if basis is None else np.asarray(basis[0],float)
     if np.linalg.norm((np.eye(n)-U@U.T)@np.ones(n)) > 1e-8:
         raise ValueError('Observable column span must contain ones')
-    N = null_space(U.T)
+    N = null_space(U.T) if basis is None else np.asarray(basis[1],float)
     nn = n*n
     # vec_row(N.T L U) = (N.T kron U.T) vec_row(L).
     compat = sparse.kron(sparse.csr_matrix(N.T), sparse.csr_matrix(U.T))
@@ -126,7 +128,8 @@ def repair_problem(K, O, allowed=None):
 
 
 def repair(K, O, allowed=None):
-    objective, Aub, bub, Aeq, beq = repair_problem(K,O,allowed)
+    U=canonical_basis(O);N=null_space(U.T)
+    objective, Aub, bub, Aeq, beq = repair_problem(K,O,allowed,basis=(U,N))
     sol = linprog(objective, A_ub=Aub,b_ub=bub,A_eq=Aeq,b_eq=beq,
                   bounds=(0,None),method='highs',
                   options={'dual_feasibility_tolerance':1e-9,
@@ -141,7 +144,7 @@ def repair(K, O, allowed=None):
                                 np.max(Aub@sol.x-bub),-np.min(sol.x)))
     n = len(K)
     return Repair(sol.x[:n*n].reshape(n,n),float(sol.fun),lower,
-                  dual_violation,primal_violation,float(sol.fun-lower),y,z)
+                  dual_violation,primal_violation,float(sol.fun-lower),y,z,U,N)
 
 
 def partition_matrix(labels):

@@ -48,12 +48,16 @@ Runtime values depend on the machine and are descriptive only.
   rerunning an optimizer.
 - 27 sharp-family models checked against formulas.
 - 600 eight-step schedules, with all 256 joint output strings enumerated each.
-- 10 unit tests; four vector figures generated from results or stated formulas.
+- 11 unit tests; four vector figures generated from results or stated formulas.
 
 The stronger mean-aggregate baseline has mean worst-row TV 0.397 versus 0.346
 for minimax repair on the partition generator; the paired difference is 0.0517.
 The larger improvement over uniform latent reconstruction should not be
 mistaken for the improvement over this stronger baseline.
+
+Saved dual witnesses include the exact numerical observable and annihilator
+bases used to construct their equations. The verifier checks those bases before
+using them, avoiding dependence on SVD sign conventions across machines.
 
 The default backward-space calculation is numerical. At its fixed tolerance,
 38 generated cases returned rank below the latent dimension. Neither numerical

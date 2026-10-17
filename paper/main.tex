@@ -226,7 +226,7 @@ The artifact includes source code, frozen generator settings, raw kernels, repai
 \paragraph{Exact arithmetic.}
 For $n=2,3,4$, enumerate all $n^n$ deterministic kernels on each of two representations: a two-block partition and a rational nonpartition encoding with two anchor rows and rational mixture rows. An independent Fraction-based Gaussian elimination checks
 $\rank[O,KO]=\rank O$.
-The numerical compatibility test agrees on all $2(2^2+3^3+4^4)=574$ cases. These are exhaustive checks for the declared finite set, not a proof for arbitrary real-valued inputs. Ten unit tests additionally cover the mixture witness, reset compatibility, full representations, sharp families, support infeasibility, and agreement between full and reduced repair solvers.
+The numerical compatibility test agrees on all $2(2^2+3^3+4^4)=574$ cases. These are exhaustive checks for the declared finite set, not a proof for arbitrary real-valued inputs. Eleven unit tests additionally cover the mixture witness, reset compatibility, full representations, sharp families, support infeasibility, agreement between full and reduced repair solvers, and reuse of saved dual bases.
 
 \paragraph{Main generators.}
 We use $n\in\{6,12,18\}$, predictive rank $r\in\{2,3\}$ and 20 seeds per stratum, giving 120 partition and 120 nonpartition cases. Partition labels are balanced and permuted. For nonpartition models, an $n\times r$ matrix $E$ contains $r$ identity anchor rows and $n-r$ independent Dirichlet$(1)$ rows. Let $H$ select the anchors, so $HE=I_r$, and choose distinct $p_i$ equally spaced in $[0.15,0.85]$. Define
@@ -326,7 +326,7 @@ Write the LP in the form
 $\min c^\top x$ subject to $Ax\le b$, $Bx=e$, and $x\ge0$.
 For dual vectors $z\le0$ and unrestricted $y$, dual feasibility is
 $c-A^\top z-B^\top y\ge0$.
-The lower objective is $b^\top z+e^\top y$. The artifact stores the matrices $K,O$, support masks when supplied, repaired kernels, and the solver's dual vectors. The verifier reconstructs the constraints, checks stochasticity, compatibility, support, dual feasibility, and agreement of the dual objective with the independently recomputed worst-row TV cost. It does not trust a solver success flag as proof of validity.
+The lower objective is $b^\top z+e^\top y$. The artifact stores the matrices $K,O$, support masks when supplied, repaired kernels, the solver's dual vectors, and the numerical bases used to construct its constraints. Saving the bases avoids dependence on SVD signs or null-space rotations across machines. The verifier independently checks their orthonormality, dimensions, and span, then reconstructs the constraints and checks stochasticity, compatibility, support, dual feasibility, and agreement of the dual objective with the independently recomputed worst-row TV cost. It does not trust a solver success flag as proof of validity.
 
 The reduced partition LP uses variables $q_h$, $a_{ih}$, and $t$ for each source block. It imposes $q\ge0$, $\sum_hq_h=1$, $q_h=0$ for $h\notin J_g$, $a_{ih}\ge\pm(p_i(h)-q_h)$ and $\sum_h a_{ih}\le2t$. This implementation does not call the full repair solver. The lifting formula, where $p_i(h)>0$, is
 \begin{equation}

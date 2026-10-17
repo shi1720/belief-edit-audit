@@ -58,7 +58,7 @@ def run():
                     name=f'{family}_n{n}_r{r}_s{seed}'
                     np.savez_compressed(OUT/'instances'/f'{name}.npz',K=K,E=E,
                         repaired=sol.kernel,labels=labels,dual_eq=sol.dual_eq,dual_ub=sol.dual_ub,
-                        M0=ops[0],M1=ops[1])
+                        M0=ops[0],M1=ops[1],observable=sol.observable,annihilator=sol.annihilator)
                     rows.append(record)
                     if family=='mixture' and n==6 and r==2:
                         for k in range(10):

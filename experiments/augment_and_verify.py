@@ -48,7 +48,17 @@ for path in sorted((OUT/'instances').glob('*.npz')):
     assert compatibility_defect(L,E)<1e-7
     allowed=d['allowed'] if 'allowed' in d else None
     if allowed is not None: assert np.max(abs(L[~allowed]),initial=0)<1e-7
-    c,A,b,B,e=repair_problem(K,E,allowed)
+    # Preserve the actual numerical bases used by the optimizer: SVD/null-space
+    # signs and rotations can vary across BLAS implementations. Check the bases
+    # independently before using them to reconstruct the saved dual equations.
+    U,N=d['observable'],d['annihilator']
+    assert U.shape[1]+N.shape[1]==len(K)
+    assert np.max(abs(U.T@U-np.eye(U.shape[1])),initial=0)<1e-7
+    assert np.max(abs(N.T@N-np.eye(N.shape[1])),initial=0)<1e-7
+    assert np.max(abs(U.T@N),initial=0)<1e-7
+    assert np.linalg.norm((np.eye(len(K))-U@U.T)@E)<1e-7
+    assert U.shape[1]==np.linalg.matrix_rank(E)
+    c,A,b,B,e=repair_problem(K,E,allowed,basis=(U,N))
     y,z=d['dual_eq'],d['dual_ub']
     dual_res=max(0.,np.max(z),-np.min(c-B.T@y-A.T@z))
     assert dual_res<1e-7
